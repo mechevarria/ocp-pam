@@ -33,7 +33,7 @@ export class KieService {
   }
 
   getProcesses(): Observable<any> {
-    const url = `${baseUrl}/server/containers/${containerId}/processes/${processId}/instances`;
+    const url = `${baseUrl}/server/containers/${containerId}/processes/instances`;
     return this.http.get<any>(url, httpOptions).pipe(
       catchError(res => this.handleError('getProcesses()', res))
     );
