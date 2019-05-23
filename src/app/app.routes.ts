@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { TableComponent } from './table/table.component';
-import { DetailComponent } from './detail/detail.component';
 import { TaskComponent } from './task/task.component';
-import { ApproveComponent } from './approve/approve.component';
+import { StartComponent } from './start/start.component';
+import { ProcessComponent } from './process/process.component';
 
 export const AppRoutes: Routes = [
   {
@@ -14,20 +13,6 @@ export const AppRoutes: Routes = [
     },
     children: [
       {
-        path: 'table',
-        component: TableComponent,
-        data: {
-          breadcrumb: 'Table'
-        }
-      },
-      {
-        path: 'detail',
-        component: DetailComponent,
-        data: {
-          breadcrumb: 'Detail'
-        }
-      },
-      {
         path: 'task',
         component: TaskComponent,
         data: {
@@ -35,10 +20,17 @@ export const AppRoutes: Routes = [
         }
       },
       {
-        path: 'approve',
-        component: ApproveComponent,
+        path: 'start',
+        component: StartComponent,
         data: {
-          breadcrumb: 'Lease Approve'
+          breadcrumb: 'Start Process'
+        }
+      },
+      {
+        path: 'process',
+        component: ProcessComponent,
+        data: {
+          breadcrumb: 'Processes'
         }
       }
     ]

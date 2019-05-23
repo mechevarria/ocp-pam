@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { MessageService } from '../message/message.service';
+import { MessageService } from './message/message.service';
 import { Observable, of } from 'rxjs/index';
 
 const headers: HttpHeaders = new HttpHeaders().append('Content-Type', 'application/json').append('Authorization', 'Basic ' + btoa('pamAdmin:redhatpam1!'));
@@ -32,45 +32,35 @@ export class KieService {
       }
     };
     return this.http.post<any>(url, body, httpOptions).pipe(
-      catchError(res => {
-        return this.handleError('process()', res);
-      })
+      catchError(res => this.handleError('process()', res))
     );
   }
 
   getTasks(): Observable<any> {
     const url = `${baseUrl}/server/queries/tasks/instances/pot-owners`;
     return this.http.get<any>(url, httpOptions).pipe(
-      catchError(res => {
-        return this.handleError('getTasks()', res);
-      })
+      catchError(res => this.handleError('getTasks()', res))
     );
   }
 
   getTask(taskId: number): Observable<any> {
     const url = `${baseUrl}/server/queries/tasks/instances/${taskId}`;
     return this.http.get<any>(url, httpOptions).pipe(
-      catchError(res => {
-        return this.handleError('getTask()', res);
-      })
+      catchError(res => this.handleError('getTask()', res))
     );
   }
 
   claim(taskId: number): Observable<any> {
     const url = `${baseUrl}/server/containers/${containerId}/tasks/${taskId}/states/claimed`;
     return this.http.put<any>(url, null, httpOptions).pipe(
-      catchError(res => {
-        return this.handleError('claim()', res);
-      })
+      catchError(res => this.handleError('claim()', res))
     );
   }
 
   start(taskId: number): Observable<any> {
     const url = `${baseUrl}/server/containers/${containerId}/tasks/${taskId}/states/started`;
     return this.http.put<any>(url, null, httpOptions).pipe(
-      catchError(res => {
-        return this.handleError('start()', res);
-      })
+      catchError(res => this.handleError('start()', res))
     );
   }
 
@@ -81,9 +71,7 @@ export class KieService {
     };
 
     return this.http.put<any>(url, body, httpOptions).pipe(
-      catchError(res => {
-        return this.handleError('complete()', res);
-      })
+      catchError(res => this.handleError('complete()', res))
     );
   }
 

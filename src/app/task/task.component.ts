@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { KieService } from '../detail/kie.service';
+import { KieService } from '../kie.service';
 import { Task } from './task';
 import { MessageService } from '../message/message.service';
 import { Router } from '@angular/router';
