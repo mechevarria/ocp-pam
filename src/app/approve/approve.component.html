@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">Lease Approval</div>
+  <div class="card-body">
+    <div class="card-text" *ngIf="task['task-status'] != 'InProgress'">
+      <div class="card-text">Please claim and start a task from the <a routerLink="../task" routerLinkActive="nav-link-primary"> Tasks </a></div>
+    </div>
+    <div class="card-text" *ngIf="task['task-status'] === 'InProgress'">
+      <div class="d-flex flex-row mb-3">
+        <button type="button" class="btn btn-primary ml-1 mr-2" (click)="approve()">Approve</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="reject()">Reject</button>
+      </div>
+    </div>
+    <app-lease [lease]="lease"></app-lease>
+  </div>
+</div>

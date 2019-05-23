@@ -1,0 +1,1 @@
+# Sample Frontend for Red Hat Process Automation Manager

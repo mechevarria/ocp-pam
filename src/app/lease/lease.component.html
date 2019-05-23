@@ -1,0 +1,74 @@
+<div class="card-deck mb-3" *ngIf="lease != null">
+  <div class="card">
+    <div class="card-header">Lease Detail</div>
+    <div class="card-body">
+      <div class="card-text">
+        <div class="form-group">
+          <label for="id">id</label>
+          <input id="id" name="id" type="text" class="form-control" [(ngModel)]="lease.id" readonly />
+        </div>
+        <div class="form-group">
+          <label for="leaseNumber">Lease Number</label>
+          <input id="leaseNumber" name="leaseNumber" type="text" class="form-control" [(ngModel)]="lease.leaseNumber" readonly />
+        </div>
+        <div class="form-group">
+          <label for="leaseName">Lease Name</label>
+          <input id="leaseName" name="leaseName" type="text" class="form-control" [(ngModel)]="lease.leaseName" readonly />
+        </div>
+        <div class="form-group">
+          <label for="annualRent">Annual Rent</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input id="annualRent" name="annualRent" type="text" class="form-control" [(ngModel)]="lease.annualRent" readonly />
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <input id="status" name="status" type="text" class="form-control" [(ngModel)]="lease.status" readonly />
+        </div>
+        <div class="form-group">
+          <label for="lastUpdateDate">Last Updated</label>
+          <input id="lastUpdateDate" name="lastUpdateDate" type="text" class="form-control" [(ngModel)]="lease.lastUpdateDate" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Location</div>
+    <div class="card-body">
+      <div class="card-text">
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input id="address" name="address" type="text" class="form-control" [(ngModel)]="lease.address" readonly />
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input id="city" name="city" type="text" class="form-control" [(ngModel)]="lease.city" readonly />
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <input id="state" name="state" type="text" class="form-control" [(ngModel)]="lease.state" readonly />
+        </div>
+        <mgl-map [style]="'mapbox://styles/mapbox/streets-v9'" [zoom]="[9]" [center]="[lease.lon, lease.lat]">
+          <mgl-marker [lngLat]="[lease.lon, lease.lat]" #marker>
+            <!-- icons from https://iconscout.com/icon/location-62-->
+            <div
+              class="marker"
+              [ngStyle]="{
+                'background-image': 'url(assets/img/marker-red.svg)'
+              }"
+            ></div>
+          </mgl-marker>
+          <mgl-popup [marker]="marker" [offset]="[0, -15]">
+            <div class="card-text">{{ lease.leaseName }}</div>
+          </mgl-popup>
+        </mgl-map>
+      </div>
+    </div>
+  </div>
+</div>
