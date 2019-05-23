@@ -2,9 +2,13 @@
   <div class="card">
     <div class="card-header">Start Process</div>
     <div class="card-body">
-      <p class="card-text">
-        Start a process
-      </p>
+      <form class="card-text" (ngSubmit)="submit()" #processForm="ngForm">
+        <div class="form-group">
+          <label for="filename">Filename</label>
+          <input type="text" class="form-control" name="filename" [(ngModel)]="filename" placeholder="filename" />
+        </div>
+        <button type="submit" class="btn btn-primary">Start</button>
+      </form>
     </div>
   </div>
 </div>

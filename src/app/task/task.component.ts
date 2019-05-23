@@ -3,6 +3,7 @@ import { KieService } from '../kie.service';
 import { Task } from './task';
 import { MessageService } from '../message/message.service';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-task',
@@ -11,14 +12,15 @@ import { Router } from '@angular/router';
 })
 export class TaskComponent implements OnInit {
   tasks: Task[];
-  constructor(private kieService: KieService, private messageService: MessageService, private router: Router) {}
+  constructor(private kieService: KieService, private messageService: MessageService, private router: Router) { }
 
   claimAndStart(taskId: number): void {
-    this.kieService.claim(taskId).subscribe(() => {
-      this.kieService.start(taskId).subscribe(() => {
-        this.messageService.info(`Task ${taskId} started`);
-        this.go(taskId);
-      });
+    forkJoin(
+      this.kieService.claim(taskId),
+      this.kieService.start(taskId)
+    ).subscribe(() => {
+      this.messageService.info(`Task ${taskId} started`);
+      this.go(taskId);
     });
   }
 
