@@ -1,0 +1,25 @@
+<div class="card-deck">
+  <div class="card">
+    <div class="card-header">Task Data</div>
+    <div class="card-body">
+      <div class="card-text" *ngIf="task === null">
+        Please claim and start a task from the
+        <a routerLink="../task" routerLinkActive="nav-link-primary">
+          Tasks
+        </a>
+      </div>
+      <div class="card-text" *ngIf="task !== null">
+        <pre>{{ task | json }}</pre>
+        <div class="d-flex flex-row mb-3">
+          <button
+            type="button"
+            class="btn btn-primary ml-1"
+            (click)="approve()"
+          >
+            Approve
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
