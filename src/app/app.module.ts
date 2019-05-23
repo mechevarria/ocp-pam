@@ -18,6 +18,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TaskComponent } from './task/task.component';
 import { StartComponent } from './start/start.component';
 import { ProcessComponent } from './process/process.component';
+import { ApproveComponent } from './approve/approve.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProcessComponent } from './process/process.component';
     SidebarComponent,
     TaskComponent,
     StartComponent,
-    ProcessComponent
+    ProcessComponent,
+    ApproveComponent
   ],
   imports: [
     BrowserModule,

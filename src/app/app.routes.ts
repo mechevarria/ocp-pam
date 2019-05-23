@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { TaskComponent } from './task/task.component';
 import { StartComponent } from './start/start.component';
 import { ProcessComponent } from './process/process.component';
+import { ApproveComponent } from './approve/approve.component';
 
 export const AppRoutes: Routes = [
   {
@@ -29,6 +30,13 @@ export const AppRoutes: Routes = [
       {
         path: 'process',
         component: ProcessComponent,
+        data: {
+          breadcrumb: 'Processes'
+        }
+      },
+      {
+        path: 'approve',
+        component: ApproveComponent,
         data: {
           breadcrumb: 'Processes'
         }
