@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { KieService } from '../kie.service';
-import { MessageService } from '../message/message.service';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap';
+import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-process',
@@ -9,12 +10,19 @@ import { MessageService } from '../message/message.service';
 })
 export class ProcessComponent implements OnInit {
 
-  processes: any[];
+  svg: SafeHtml
+  modalRef: BsModalRef;
+  processes: any[] = new Array();
 
-  constructor(private kieService: KieService, private messageService: MessageService) { }
+  constructor(private kieService: KieService, private modalService: BsModalService, private sanitizer: DomSanitizer) { }
 
-  viewProcess(processInstanceId: number): void {
-    this.messageService.info(`View process ${processInstanceId}`);
+  viewProcess(template: TemplateRef<any>, processInstanceId: string) {
+    this.kieService.getImage(processInstanceId).subscribe(res => {
+      this.svg = this.sanitizer.bypassSecurityTrustHtml(res);
+
+      const config: ModalOptions = { class: 'modal-lg' };
+      this.modalRef = this.modalService.show(template, config);
+    })
   }
 
   load(): void {
