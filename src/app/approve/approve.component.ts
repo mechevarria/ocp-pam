@@ -5,8 +5,7 @@ import { MessageService } from '../message/message.service';
 
 @Component({
   selector: 'app-approve',
-  templateUrl: './approve.component.html',
-  styleUrls: ['./approve.component.css']
+  templateUrl: './approve.component.html'
 })
 export class ApproveComponent implements OnInit {
   task: any = null;
