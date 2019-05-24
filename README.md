@@ -1,4 +1,4 @@
-# Sample Frontend for Red Hat Process Automation Manager
+# Angular App for Red Hat Process Automation Manager
 
 This application is a starter for a custom frontend that works with the [rhpam7-install-demo](https://github.com/jbossdemocentral/rhpam7-install-demo) project to install [Red Hat Process Automation Manager](https://www.redhat.com/en/technologies/jboss-middleware/process-automation-manager)
 
