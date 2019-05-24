@@ -1,6 +1,6 @@
 # Angular App for Red Hat Process Automation Manager
 
-This application is a starter for a custom frontend that works with the [rhpam7-install-demo](https://github.com/jbossdemocentral/rhpam7-install-demo) project to install [Red Hat Process Automation Manager](https://www.redhat.com/en/technologies/jboss-middleware/process-automation-manager)
+This [Angular](https://angular.io/) application is a starter for a custom frontend that works with the [rhpam7-install-demo](https://github.com/jbossdemocentral/rhpam7-install-demo) project to install [Red Hat Process Automation Manager](https://www.redhat.com/en/technologies/jboss-middleware/process-automation-manager)
 
 ![screenshot](./screenshot1.png)
 
@@ -34,9 +34,11 @@ This application assumes you have installed the [rhpam7-install-demo](https://gi
 
 >`run-local.sh`
 
-The server will be running on [http://localhost:4200](http://localhost:4200)
+The server will be running on [http://localhost:4200](http://localhost:4200) and will communicate with the kie-server running in Openshift
 
 ## Additional Development Notes
+
+* The process variables for the deployed process container process id are in the [kie-service.ts](https://github.com/mechevarria/ocp-pam/blob/master/src/app/kie.service.ts) file.
 
 * [vscode](https://code.visualstudio.com/) has out of the box support for Angular projects
 
@@ -62,4 +64,4 @@ app.use(
 
 * The `sso-scripts` folder has deployment scripts that will integrate [Red Hat Process Automation Manager](https://www.redhat.com/en/technologies/jboss-middleware/process-automation-manager) with [Red Hat Single Sign-On](https://access.redhat.com/products/red-hat-single-sign-on). The security realm can also be imported.
 
-* This is a work in progress since you can authenticate and deploy projects, but you cannot clone the internal git repository yet to export work from Openshift
+* SSO is a work in progress since you can authenticate and deploy projects, but you cannot clone the internal git repository yet to export work from Openshift
