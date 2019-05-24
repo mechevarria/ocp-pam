@@ -6,7 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routes';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -39,6 +40,7 @@ import { ApproveComponent } from './approve/approve.component';
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
