@@ -2,13 +2,12 @@
 
 oc login -u developer
 
-# prefixing project with user to allow multiple people building the same project on the same cluster
-proj_name="rhpam7-app"
+proj_name="rhpam7-install-sso"
 proj_exists="$(oc projects | grep ${proj_name})"
 
 # if project doesn't exist, make a new one.  Otherwise switch to that project
 if [[ -z ${proj_exists} ]]; then
-  oc new-project ${proj_name} --display-name="RHPAM7 Apps" --description="Applications that use Red Hat Process Automation Manager 7"
+  oc new-project ${proj_name} --display-name="RHPAM7 SSO" --description="SSO with Red Hat Process Automation Manager 7"
 else
   oc project ${proj_name}
 fi
