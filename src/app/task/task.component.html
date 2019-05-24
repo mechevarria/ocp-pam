@@ -15,16 +15,16 @@
           </thead>
           <tbody>
             <!-- Putting the click handler on the row breaks responsive button expansion in mobile view-->
-            <tr *ngFor="let task of tasks" class="app-pointer">
-              <td>{{ task.id }}</td>
-              <td>{{ task.name }}</td>
-              <td>{{ task.status }}</td>
-              <td>{{ task.created | date }}</td>
+            <tr *ngFor="let task of tasks">
+              <td>{{ task['task-id']}}</td>
+              <td>{{ task['task-name']}}</td>
+              <td>{{ task['task-status'] }}</td>
+              <td>{{ task['task-created-on']['java.util.Date'] | date }}</td>
               <td>
-                <button *ngIf="task.status === 'Ready'" (click)="claimAndStart(task.id)" type="button" class="btn btn-primary mr-2">
+                <button *ngIf="task['task-status'] === 'Ready'" (click)="claimAndStart(task['task-id'])" type="button" class="btn btn-primary mr-2">
                   Claim
                 </button>
-                <button *ngIf="task.status === 'InProgress'" (click)="go(task.id)" type="button" class="btn btn-success">
+                <button *ngIf="task['task-status'] === 'InProgress'" (click)="go(task['task-id'])" type="button" class="btn btn-success">
                   Go
                 </button>
               </td>

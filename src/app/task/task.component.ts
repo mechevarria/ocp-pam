@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { KieService } from '../kie.service';
-import { Task } from './task';
 import { MessageService } from '../message/message.service';
 import { Router } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  templateUrl: './task.component.html'
 })
 export class TaskComponent implements OnInit {
-  tasks: Task[];
+  tasks: any[] = new Array();
+  
   constructor(private kieService: KieService, private messageService: MessageService, private router: Router) { }
 
   claimAndStart(taskId: number): void {
@@ -29,17 +28,7 @@ export class TaskComponent implements OnInit {
 
   load(): void {
     this.kieService.getTasks().subscribe(res => {
-      this.tasks = new Array();
-
-      res['task-summary'].forEach(item => {
-        const task: Task = new Task();
-        task.id = item['task-id'];
-        task.name = item['task-name'];
-        task.status = item['task-status'];
-        task.processId = item['task-proc-inst-id'];
-        task.created = new Date(item['task-created-on']['java.util.Date']);
-        this.tasks.push(task);
-      });
+      this.tasks = res['task-summary'];
     });
   }
 
