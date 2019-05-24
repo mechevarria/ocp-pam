@@ -4,16 +4,19 @@ import { catchError } from 'rxjs/operators';
 import { MessageService } from './message/message.service';
 import { Observable, of } from 'rxjs/index';
 
-const headers: HttpHeaders = new HttpHeaders()
-  .append('Content-Type', 'application/json')
-  .append('Authorization', 'Basic ' + btoa('pamAdmin:redhatpam1!'));
-
-const httpOptions = {
-  headers: headers
-};
 const baseUrl = '/services/rest';
 const processId = 'malware.inspect';
 const containerId = 'malware_1.0.0-SNAPSHOT';
+const user = 'pamAdmin';
+const password = 'redhatpam1!'
+
+const headers: HttpHeaders = new HttpHeaders()
+  .append('Content-Type', 'application/json')
+  .append('Authorization', 'Basic ' + btoa(`${user}:${password}`));
+
+const httpOptions: any = {
+  headers: headers
+};
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +26,10 @@ export class KieService {
 
   startProcess(filename: string): Observable<any> {
     const url = `${baseUrl}/server/containers/${containerId}/processes/${processId}/instances`;
-
     const body = {
       filename: filename
     };
+    
     return this.http.post<any>(url, body, httpOptions).pipe(
       catchError(res => this.handleError('process()', res))
     );
@@ -37,6 +40,15 @@ export class KieService {
     return this.http.get<any>(url, httpOptions).pipe(
       catchError(res => this.handleError('getProcesses()', res))
     );
+  }
+
+  getImage(processInstanceId: string) {
+    const url = `${baseUrl}/server/containers/${containerId}/images/processes/instances/${processInstanceId}`;
+    httpOptions.responseType = 'text' as 'text';
+
+    return this.http.get(url, httpOptions).pipe(
+      catchError(res => this.handleError('getImage()', res))
+    )
   }
 
   getTasks(): Observable<any> {
